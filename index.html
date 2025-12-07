@@ -28,10 +28,23 @@
   <!-- All your CSS is in this file -->
   <!-- <link rel="stylesheet" href="assets/code/home.css"> -->
 
-  <script src="...js/grained.min.js"></script>
+  <script src="js/grained.min.js"></script>
 
 
 <style>
+
+html, body {
+  overscroll-behavior: none;
+  /* overflow: hidden; */
+}
+
+body {
+    background-color: #000000;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
 #feed {
   position: relative;
   width: 100%;
@@ -39,22 +52,80 @@
 }
 
 .feed-img {
-  display: block;
-  width: 100%;
-  height: auto;
+  background-image: url("assets/Timelapse-Test-6.png");
+  background-size: contain; /* keep natural aspect ratio */
+  background-repeat: no-repeat;
+  background-position: top center;
+
+  /* This is important: let height follow natural aspect ratio */
+  aspect-ratio: 1080 / 1920; portrait ratio
 }
+
+.live-overlay {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-family: monospace;
+  font-size: 14px;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 9999; /* above grain canvas */
+}
+
+/* Blinking green dot */
+.live-dot {
+  width: 10px;
+  height: 10px;
+  background: #00ff80;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
 
 </style>
 
 </head>
 
 <body>
-  <div id="feed">
-    <img src="assets/Timelapse-Test-2.png" class="feed-img" alt="">
+  <div id="feed" class="feed-img">
+      <div class="live-overlay">
+  <span class="live-dot"></span>
+  LIVE
+  <span id="live-time"></span>
   </div>
+
+</div>
 
 
 <script>
+
+  window.onload = function () {
+
+    // ------- UPDATE CLOCK -------
+    function updateClock() {
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, "0");
+      const mm = String(now.getMinutes()).padStart(2, "0");
+      const ss = String(now.getSeconds()).padStart(2, "0");
+      document.getElementById("live-time").textContent = `${hh}:${mm}:${ss}`;
+    }
+
+    updateClock();                // initialize immediately
+    setInterval(updateClock, 1000); // update every second
+  };
+
   var options = {
     animate: true,
     patternWidth: 96.45,
@@ -65,7 +136,7 @@
     grainHeight: 3.98
   };
 
-  grained("feed", options);  // using # for the ID
+  grained("#feed", options);
 </script>
 
 </body>
