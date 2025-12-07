@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- This is the title that appears in your browser tab -->
+  <title>HVY Letters</title>
+
+  <!-- This is a bunch of meta tags for search engine optimization (SEO) and for when you share your site with other people! -->
+  <!-- Many of these tags were invented by Facebook and are called the Open Graph protocol, more info here: https://ogp.me/ -->
+  <meta name="author" content="TODO: Your name goes here!">
+  <meta name="keywords" content="TODO: A bunch of tags separated by commas!">
+  <meta name="description" content="TODO: A short description of your site!">
+  <meta property="og:url" content="TODO: Your site’s final URL!">
+  <meta name="og:title" property="og:title" content="TODO: The name of your site!">
+  <meta property="og:description" content="TODO: A short description of your site!">
+
+  <!-- This is the thumbnail that appears when you share your site -->
+  <!-- It should be 1200x630 pixels -->
+  <meta property="og:image" content="assets/meta/opengraph.jpg">
+
+  <!-- This is the favicon that appears in your web browser -->
+  <!-- It should be 32x32 pixels -->
+  <link rel="icon" type="png" href="assets/meta/favicon.png">
+
+  <!-- All your CSS is in this file -->
+  <!-- <link rel="stylesheet" href="assets/code/home.css"> -->
+
+  <script src="...js/grained.min.js"></script>
+
+
+<style>
+#feed {
+  position: relative;
+  width: 100%;
+  z-index: 0;
+}
+
+.feed-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+</style>
+
+</head>
+
+<body>
+  <div id="feed">
+    <img src="assets/Timelapse-Test-2.png" class="feed-img" alt="">
+  </div>
+
+
+<script>
+  var options = {
+    animate: true,
+    patternWidth: 96.45,
+    patternHeight: 101.85,
+    grainOpacity: 0.06,
+    grainDensity: 1,
+    grainWidth: 1,
+    grainHeight: 3.98
+  };
+
+  grained("feed", options);  // using # for the ID
+</script>
+
+</body>
+
+</html>
